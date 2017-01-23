@@ -8,15 +8,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KoYelie/gulp-rollup-each.git"
+    "url": "git+https://github.com/ko-yelie/gulp-rollup-each.git"
   },
   "keywords": [],
   "author": "Ko.Yelie",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KoYelie/gulp-rollup-each/issues"
+    "url": "https://github.com/ko-yelie/gulp-rollup-each/issues"
   },
-  "homepage": "https://github.com/KoYelie/gulp-rollup-each#readme",
+  "homepage": "https://github.com/ko-yelie/gulp-rollup-each#readme",
   "scripts": {
     "lint": "eslint lib test",
     "test": "npm run lint && jasmine JASMINE_CONFIG_PATH=test/jasmine.json"
