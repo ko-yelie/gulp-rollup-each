@@ -10,7 +10,10 @@ var gulp = require('gulp')
 var rollupEach = require('gulp-rollup-each')
 
 gulp.task('rollup', () => {
-  return gulp.src('src/*.js')
+  return gulp.src([
+      'src/*.js',
+      '!src/**/_*' // exclude modules
+    ])
     .pipe(rollupEach({
       // bundle.generate( options )
       format: 'iife'
@@ -28,7 +31,10 @@ var rollupEach = require('gulp-rollup-each')
 var rollupBuble = require('rollup-plugin-buble')
 
 gulp.task('rollup', () => {
-  return gulp.src('src/*.js')
+  return gulp.src([
+      'src/*.js',
+      '!src/**/_*' // exclude modules
+    ])
     .pipe(sourcemaps.init())
     .pipe(rollupEach({
       // rollup.rollup( options )
