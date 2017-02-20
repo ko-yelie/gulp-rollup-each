@@ -68,7 +68,10 @@ var gulp = require('gulp')
 var rollupEach = require('gulp-rollup-each')
 
 gulp.task('rollup', () => {
-  return gulp.src('src/*.js')
+  return gulp.src([
+      'src/*.js',
+      '!src/**/_*' // exclude modules
+    ])
     .pipe(rollupEach({
       plugins: [/* ... */]
     }, (file) => {
