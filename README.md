@@ -10,12 +10,13 @@ var gulp = require('gulp')
 var rollupEach = require('gulp-rollup-each')
 
 gulp.task('rollup', () => {
-  gulp.src('src/*.js')
+  return gulp.src('src/*.js')
     .pipe(rollupEach({
       // bundle.generate( options )
       format: 'iife'
-    })
+    }))
     .pipe(gulp.dest('dist'))
+})
 ```
 
 with sourcemaps and Buble
@@ -27,7 +28,7 @@ var rollupEach = require('gulp-rollup-each')
 var rollupBuble = require('rollup-plugin-buble')
 
 gulp.task('rollup', () => {
-  gulp.src('src/*.js')
+  return gulp.src('src/*.js')
     .pipe(sourcemaps.init())
     .pipe(rollupEach({
       // rollup.rollup( options )
@@ -47,9 +48,31 @@ gulp.task('rollup', () => {
       globals: {
         jquery: 'jQuery'
       }
-    })
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'))
+})
+```
+
+You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
+
+```js
+var path = require('path')
+var gulp = require('gulp')
+var rollupEach = require('gulp-rollup-each')
+
+gulp.task('rollup', () => {
+  return gulp.src('src/*.js')
+    .pipe(rollupEach({
+      plugins: [/* ... */]
+    }, (file) => {
+      return {
+        format: 'umd',
+        moduleName: path.basename(file.path, '.js')
+      }
+    }))
+    .pipe(gulp.dest('dist'))
+})
 ```
 
 ## License
