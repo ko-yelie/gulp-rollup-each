@@ -14,9 +14,8 @@ gulp.task('rollup', () => {
     .pipe(rollupEach({
       // bundle.generate( options )
       format: 'iife'
-    })
+    }))
     .pipe(gulp.dest('dist'))
-  )
 })
 ```
 
