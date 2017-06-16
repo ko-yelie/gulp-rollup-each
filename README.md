@@ -98,6 +98,8 @@ However, the `entry` option is the file specified in `gulp.src()`, so it can not
 The 2nd argument is the same object as [`bundle.generate(options)`](https://github.com/rollup/rollup/wiki/JavaScript-API#bundlegenerate-options-).  
 If you omit the 2nd argument, the 1st argument changes to `generateOptions`.
 
+You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
+
 ## License
 
 MIT
