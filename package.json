@@ -28,11 +28,11 @@
   "devDependencies": {
     "babel-eslint": "^7.1.1",
     "babel-register": "^6.18.0",
-    "eslint": "^3.12.2",
+    "eslint": "^4.0.0",
     "jasmine": "^2.5.2"
   },
   "dependencies": {
-    "rollup": "^0.41.4",
+    "rollup": "^0.43.0",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
 }
