@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/ko-yelie/gulp-rollup-each.git"
   },
-  "keywords": [],
+  "keywords": [
+    "gulp",
+    "rollup",
+    "static-site"
+  ],
   "author": "Ko.Yelie",
   "license": "MIT",
   "bugs": {
