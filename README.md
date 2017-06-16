@@ -1,7 +1,7 @@
 # gulp-rollup-each
 
 Gulp plugin for Rollup.  
-Yet another gulp-rollup plugin that allows to input/output multiple files.
+Yet another gulp-rollup plugin that allows to input/output multiple files for static site.
 
 ## Usage
 
@@ -83,6 +83,20 @@ gulp.task('rollup', () => {
     .pipe(gulp.dest('dist'))
 })
 ```
+
+## Options
+
+### `rollupEach([rollupOptions,] generateOptions)`
+
+#### `rollupOptions`
+
+The 1st argument is the same object as [`rollup.rollup(options)`](https://github.com/rollup/rollup/wiki/JavaScript-API#rolluprollup-options-).  
+However, the `entry` option is the file specified in `gulp.src()`, so it can not be specified as gulp-rollup-each option.
+
+#### `generateOptions`
+
+The 2nd argument is the same object as [`bundle.generate(options)`](https://github.com/rollup/rollup/wiki/JavaScript-API#bundlegenerate-options-).  
+If you omit the 2nd argument, the 1st argument changes to `generateOptions`.
 
 ## License
 
