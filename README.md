@@ -15,7 +15,7 @@ gulp.task('rollup', () => {
       '!src/**/_*' // exclude modules
     ])
     .pipe(rollupEach({
-      // bundle.generate( options )
+      // outputOptions
       format: 'iife'
     }))
     .pipe(gulp.dest('dist'))
@@ -37,7 +37,7 @@ gulp.task('rollup', () => {
     ])
     .pipe(sourcemaps.init())
     .pipe(rollupEach({
-      // rollup.rollup( options )
+      // inputOptions
       external: [
         'jquery'
       ],
@@ -49,7 +49,7 @@ gulp.task('rollup', () => {
         })
       ]
     }, {
-      // bundle.generate( options )
+      // outputOptions
       format: 'iife',
       globals: {
         jquery: 'jQuery'
@@ -77,7 +77,7 @@ gulp.task('rollup', () => {
     }, (file) => {
       return {
         format: 'umd',
-        moduleName: path.basename(file.path, '.js')
+        name: path.basename(file.path, '.js')
       }
     }))
     .pipe(gulp.dest('dist'))
@@ -86,17 +86,17 @@ gulp.task('rollup', () => {
 
 ## Options
 
-### `rollupEach([rollupOptions,] generateOptions)`
+### `rollupEach([inputOptions,] outputOptions)`
 
-#### `rollupOptions`
+#### `inputOptions`
 
-The 1st argument is the same object as [`rollup.rollup(options)`](https://github.com/rollup/rollup/wiki/JavaScript-API#rolluprollup-options-).  
-However, the `entry` option is the file specified in `gulp.src()`, so it can not be specified as gulp-rollup-each option.
+The 1st argument is the same object as [`inputOptions`](https://rollupjs.org/#inputoptions).  
+However, the `input` option is the file specified in `gulp.src()`, so it can not be specified as gulp-rollup-each option.
 
-#### `generateOptions`
+#### `outputOptions`
 
-The 2nd argument is the same object as [`bundle.generate(options)`](https://github.com/rollup/rollup/wiki/JavaScript-API#bundlegenerate-options-).  
-If you omit the 2nd argument, the 1st argument changes to `generateOptions`.
+The 2nd argument is the same object as [`outputOptions`](https://rollupjs.org/#outputoptions).  
+If you omit the 2nd argument, the 1st argument changes to `outputOptions`.
 
 You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
 
