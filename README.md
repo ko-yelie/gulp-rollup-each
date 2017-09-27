@@ -15,8 +15,9 @@ gulp.task('rollup', () => {
       '!src/**/_*' // exclude modules
     ])
     .pipe(rollupEach({
-      // outputOptions
-      format: 'iife'
+      output: {
+        format: 'iife'
+      }
     }))
     .pipe(gulp.dest('dist'))
 })
@@ -86,7 +87,7 @@ gulp.task('rollup', () => {
 
 ## Options
 
-### `rollupEach([inputOptions,] outputOptions)`
+### `rollupEach(inputOptions [, outputOptions])`
 
 #### `inputOptions`
 
@@ -96,7 +97,7 @@ However, the `input` option is the file specified in `gulp.src()`, so it can not
 #### `outputOptions`
 
 The 2nd argument is the same object as [`outputOptions`](https://rollupjs.org/#outputoptions).  
-If you omit the 2nd argument, the 1st argument changes to `outputOptions`.
+If you omit the 2nd argument, `output` in the 1st argument changes to `outputOptions`.
 
 You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
 
