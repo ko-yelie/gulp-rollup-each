@@ -33,7 +33,7 @@
     "jasmine": "^2.5.2"
   },
   "dependencies": {
-    "gulp-util": "^3.0.8",
+    "plugin-error": "^0.1.2",
     "rollup": "^0.49.3",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
