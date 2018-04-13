@@ -51,4 +51,19 @@ describe('gulp-rollup-each', () => {
         throw new Error('test error')
       }))
   })
+
+  it('can be injected rollup object', done => {
+    const mockRollup = {
+      rollup () {
+        return Promise.reject(new Error('Injected'))
+      }
+    }
+
+    mockSrc('test.js')
+      .pipe(plugin({}, {}, mockRollup))
+      .on('error', err => {
+        expect(err.message).toBe('Injected')
+        done()
+      })
+  })
 })
