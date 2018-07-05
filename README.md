@@ -6,12 +6,12 @@ Yet another gulp-rollup plugin that allows to input/output multiple files for st
 ## Usage
 
 ```js
-var gulp = require('gulp')
-var rollupEach = require('gulp-rollup-each')
+const gulp = require('gulp')
+const rollupEach = require('gulp-rollup-each')
 
 gulp.task('rollup', () => {
   return gulp.src([
-      'src/*.js',
+      'src/**/*.js',
       '!src/**/_*' // exclude modules
     ])
     .pipe(rollupEach({
@@ -26,14 +26,14 @@ gulp.task('rollup', () => {
 with sourcemaps and Buble
 
 ```js
-var gulp = require('gulp')
-var sourcemaps = require('gulp-sourcemaps')
-var rollupEach = require('gulp-rollup-each')
-var rollupBuble = require('rollup-plugin-buble')
+const gulp = require('gulp')
+const sourcemaps = require('gulp-sourcemaps')
+const rollupEach = require('gulp-rollup-each')
+const rollupBuble = require('rollup-plugin-buble')
 
 gulp.task('rollup', () => {
   return gulp.src([
-      'src/*.js',
+      'src/**/*.js',
       '!src/**/_*' // exclude modules
     ])
     .pipe(sourcemaps.init())
@@ -64,13 +64,13 @@ gulp.task('rollup', () => {
 You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
 
 ```js
-var path = require('path')
-var gulp = require('gulp')
-var rollupEach = require('gulp-rollup-each')
+const path = require('path')
+const gulp = require('gulp')
+const rollupEach = require('gulp-rollup-each')
 
 gulp.task('rollup', () => {
   return gulp.src([
-      'src/*.js',
+      'src/**/*.js',
       '!src/**/_*' // exclude modules
     ])
     .pipe(rollupEach({
@@ -108,7 +108,7 @@ You can specify the 3rd argument for replacing `rollup` object by your dependenc
 ```js
 gulp.task('rollup', () => {
     return gulp
-    .src(['src/*.js'])
+    .src(['src/**/*.js'])
     .pipe(
       rollupEach(
         {},
