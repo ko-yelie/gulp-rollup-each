@@ -3,6 +3,14 @@
 Gulp plugin for [Rollup](https://rollupjs.org).<br>
 Yet another gulp-rollup plugin that allows to input/output multiple files for static site.
 
+## Installation
+
+[npm](https://www.npmjs.com/package/gulp-rollup-each)
+
+```sh
+npm i gulp-rollup-each
+```
+
 ## Usage
 
 ```js
