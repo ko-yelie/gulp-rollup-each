@@ -1,6 +1,6 @@
 # gulp-rollup-each
 
-Gulp plugin for Rollup.  
+Gulp plugin for [Rollup](https://rollupjs.org).<br>
 Yet another gulp-rollup plugin that allows to input/output multiple files for static site.
 
 ## Usage
@@ -91,12 +91,12 @@ gulp.task('rollup', () => {
 
 #### `inputOptions`
 
-The 1st argument is the same object as [`inputOptions`](https://rollupjs.org/#inputoptions).  
+The 1st argument is the same object as [`inputOptions`](https://rollupjs.org/#inputoptions).<br>
 However, the `input` option is the file specified in `gulp.src()`, so it can not be specified as gulp-rollup-each option.
 
 #### `outputOptions`
 
-The 2nd argument is the same object as [`outputOptions`](https://rollupjs.org/#outputoptions).  
+The 2nd argument is the same object as [`outputOptions`](https://rollupjs.org/#outputoptions).<br>
 If you omit the 2nd argument, `output` in the 1st argument changes to `outputOptions`.
 
 You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
