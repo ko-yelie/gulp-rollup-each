@@ -47,6 +47,7 @@ gulp.task('rollup', () => {
     .pipe(sourcemaps.init())
     .pipe(rollupEach({
       // inputOptions
+      cache: true, // use rollup cache
       external: [
         'jquery'
       ],
@@ -100,7 +101,7 @@ gulp.task('rollup', () => {
 #### `inputOptions`
 
 The 1st argument is the same object as [`inputOptions`](https://rollupjs.org/#inputoptions).<br>
-However, the `input` option is the file specified in `gulp.src()`, so it can not be specified as gulp-rollup-each option.
+However, the `input` option is the file specified in `gulp.src()`, so it can not be specified as gulp-rollup-each option. If you use the `cache` option, pass in a `boolean` of `true` instead of an empty variable.
 
 #### `outputOptions`
 
