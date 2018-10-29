@@ -47,7 +47,7 @@ gulp.task('rollup', () => {
     .pipe(sourcemaps.init())
     .pipe(rollupEach({
       // inputOptions
-      cache: true, // use rollup cache
+      isCache: true, // use rollup cache
       external: [
         'jquery'
       ],
