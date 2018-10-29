@@ -12,7 +12,7 @@ gulp.task('rollup', () => {
     ])
     .pipe(sourcemaps.init())
     .pipe(rollupEach({
-      cache: true,
+      isCache: true,
       plugins: [
         rollupBabel(),
         rollupResolve({
