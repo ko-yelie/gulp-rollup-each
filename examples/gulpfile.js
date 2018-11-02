@@ -5,13 +5,14 @@ const rollupResolve = require('rollup-plugin-node-resolve')
 const rollupCommon = require('rollup-plugin-commonjs')
 const sourcemaps = require('gulp-sourcemaps')
 
-gulp.task('default', () => {
+gulp.task('rollup', () => {
   return gulp.src([
       'src/**/*.js',
       '!src/**/modules/*.js'
     ])
     .pipe(sourcemaps.init())
     .pipe(rollupEach({
+      isCache: true,
       plugins: [
         rollupBabel(),
         rollupResolve({
@@ -26,3 +27,6 @@ gulp.task('default', () => {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'))
 })
+
+gulp.task('watch', () => gulp.watch('src/**/*.js', ['rollup']))
+gulp.task('default', ['rollup'])
