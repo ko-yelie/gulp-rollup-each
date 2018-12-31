@@ -39,13 +39,15 @@ const sourcemaps = require('gulp-sourcemaps')
 const rollupEach = require('gulp-rollup-each')
 const rollupBuble = require('rollup-plugin-buble')
 
-gulp.task('rollup', () => {
+function scripts () {
+
   return gulp.src([
-      'src/**/*.js',
-      '!src/**/_*' // exclude modules
-    ])
-    .pipe(sourcemaps.init())
-    .pipe(rollupEach({
+    'src/**/*.js',
+    '!src/**/_*' // exclude modules
+  ]).pipe(
+    sourcemaps.init()
+  ).pipe(
+    rollupEach({
       // inputOptions
       isCache: true, // enable Rollup cache
       external: [
@@ -64,10 +66,13 @@ gulp.task('rollup', () => {
       globals: {
         jquery: 'jQuery'
       }
-    }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist'))
-})
+    })
+  ).pipe(
+    sourcemaps.write()
+  ).pipe(
+    gulp.dest('dist')
+  )
+}
 ```
 
 You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
@@ -77,21 +82,25 @@ const path = require('path')
 const gulp = require('gulp')
 const rollupEach = require('gulp-rollup-each')
 
-gulp.task('rollup', () => {
+function scripts () {
+
   return gulp.src([
-      'src/**/*.js',
-      '!src/**/_*' // exclude modules
-    ])
-    .pipe(rollupEach({
+    'src/**/*.js',
+    '!src/**/_*' // exclude modules
+  ]).pipe(
+    rollupEach({
+      external: [/* ... */],
       plugins: [/* ... */]
     }, (file) => {
       return {
         format: 'umd',
         name: path.basename(file.path, '.js')
       }
-    }))
-    .pipe(gulp.dest('dist'))
-})
+    })
+  ).pipe(
+    gulp.dest('dist')
+  )
+}
 ```
 
 ## Options
@@ -117,24 +126,28 @@ You can also pass a function that returns rollup options object as an argument. 
 You can specify the 3rd argument for replacing `rollup` object by your dependency. It is useful if you want to use a new version of rollup than gulp-rollup-each is using.
 
 ```js
-gulp.task('rollup', () => {
-    return gulp
-    .src(['src/**/*.js'])
-    .pipe(
-      rollupEach(
-        {},
-        {
-          output: {
-            format: 'iife'
-          }
-        },
 
-        // Passing rollup object
-        require('rollup')
-      )
+function scripts () {
+
+  return gulp.src([
+    'src/**/*.js'
+  ]).pipe(
+    rollupEach(
+      {},
+      {
+        output: {
+          format: 'iife'
+        }
+      },
+
+      // Passing rollup object
+      require('rollup')
     )
-    .pipe(gulp.dest('dist'))
-})
+  ).pipe(
+    gulp.dest('dist')
+  )
+}
+
 ```
 
 ## License
