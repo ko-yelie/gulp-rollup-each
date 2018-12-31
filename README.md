@@ -121,7 +121,7 @@ You can also pass a function that returns rollup options object as an argument. 
 
 #### `rollup`
 
-You can specify the 1st argument for replacing `rollup` object by your dependency. It is useful if you want to use a new version of rollup than gulp-rollup-each is using.
+You can specify the 3rd argument for replacing `rollup` object by your dependency. It is useful if you want to use a new version of rollup than gulp-rollup-each is using.
 
 ```js
 
@@ -130,11 +130,17 @@ function scripts () {
   return gulp.src([
     'src/**/*.js'
   ]).pipe(
-    rollupEach({ /* .. */ }, {
-      output: {
-        format: 'iife'
-      }
-    }, require('rollup'))
+    rollupEach(
+      {},
+      {
+        output: {
+          format: 'iife'
+        }
+      },
+
+      // Passing rollup object
+      require('rollup')
+    )
   ).pipe(
     gulp.dest('dist')
   )
