@@ -5,33 +5,30 @@ const rollupResolve = require('rollup-plugin-node-resolve')
 const rollupCommon = require('rollup-plugin-commonjs')
 const sourcemaps = require('gulp-sourcemaps')
 
-function scripts() {
-
-  return gulp.src([
-    'src/**/*.js',
-    '!src/**/modules/*.js'
-  ]).pipe(
-    sourcemaps.init()
-  ).pipe(
-    rollupEach({
-      isCache: true,
-      plugins: [
-        rollupBabel(),
-        rollupResolve({
-          jsnext: true,
-          main: true
-        }),
-        rollupCommon()
-      ]
-    }, {
-      format: 'iife'
-    })
-  ).pipe(
-    sourcemaps.write()
-  ).pipe(
-    gulp.dest('dist')
-  )
-
+function scripts () {
+  return gulp
+    .src(['src/**/*.js', '!src/**/modules/*.js'])
+    .pipe(sourcemaps.init())
+    .pipe(
+      rollupEach(
+        {
+          isCache: true,
+          plugins: [
+            rollupBabel(),
+            rollupResolve({
+              jsnext: true,
+              main: true
+            }),
+            rollupCommon()
+          ]
+        },
+        {
+          format: 'iife'
+        }
+      )
+    )
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('dist'))
 }
 
 function watch () {
