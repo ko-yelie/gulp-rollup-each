@@ -35,6 +35,10 @@ function watch () {
   gulp.watch('src/**/*.js', scripts)
 }
 
-gulp.task('rollup', scripts)
-gulp.task('watch', watch)
-gulp.task('default', gulp.series('rollup'))
+function copy () {
+  return gulp.src('src/**/*.html').pipe(gulp.dest('dist'))
+}
+
+exports.scripts = scripts
+exports.watch = watch
+exports.default = gulp.parallel(copy, scripts)
