@@ -17,7 +17,7 @@ npm i gulp-rollup-each
 const gulp = require('gulp')
 const rollupEach = require('gulp-rollup-each')
 
-gulp.task('rollup', () => {
+function scripts () {
   return gulp
     .src([
       'src/**/*.js',
@@ -26,12 +26,13 @@ gulp.task('rollup', () => {
     .pipe(
       rollupEach({
         output: {
+          // outputOptions
           format: 'iife'
         }
       })
     )
     .pipe(gulp.dest('dist'))
-})
+}
 ```
 
 with sourcemaps and Buble
@@ -53,7 +54,6 @@ function scripts () {
       rollupEach(
         {
           // inputOptions
-          isCache: true, // enable Rollup cache
           external: ['jquery'],
           plugins: [
             rollupBuble({
@@ -61,7 +61,8 @@ function scripts () {
                 ie: 11
               }
             })
-          ]
+          ],
+          isCache: true // enable Rollup cache
         },
         {
           // outputOptions
@@ -77,6 +78,56 @@ function scripts () {
 }
 ```
 
+## Options
+
+### `rollupEach(inputOptions [[, outputOptions], rollup])`
+
+#### `inputOptions`
+
+The 1st argument is the same object as [`inputOptions`](https://rollupjs.org/guide/en#inputoptions).<br>
+However, **the `input` option is the file specified in `gulp.src()`**, so it can not be specified as gulp-rollup-each option.
+
+If you want to enable the Rollup [`cache`](https://rollupjs.org/guide/en#cache), set `isCache` option to `true`.
+
+```js
+function scripts () {
+  return gulp
+    .src(['src/**/*.js'])
+    .pipe(
+      rollupEach(
+        {
+          isCache: true // enable Rollup cache
+        },
+        {
+          format: 'iife'
+        }
+      )
+    )
+    .pipe(gulp.dest('dist'))
+}
+```
+
+#### `outputOptions`
+
+The 2nd argument is the same object as [`outputOptions`](https://rollupjs.org/guide/en#outputoptions).<br>
+If you omit the 2nd argument, `output` in the 1st argument changes to `outputOptions`.
+
+```js
+function scripts () {
+  return gulp
+    .src(['src/**/*.js'])
+    .pipe(
+      rollupEach({
+        output: {
+          // outputOptions
+          format: 'iife'
+        }
+      })
+    )
+    .pipe(gulp.dest('dist'))
+}
+```
+
 You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
 
 ```js
@@ -86,10 +137,7 @@ const rollupEach = require('gulp-rollup-each')
 
 function scripts () {
   return gulp
-    .src([
-      'src/**/*.js',
-      '!src/**/_*' // exclude modules
-    ])
+    .src(['src/**/*.js'])
     .pipe(
       rollupEach(
         {
@@ -108,24 +156,6 @@ function scripts () {
 }
 ```
 
-## Options
-
-### `rollupEach(inputOptions [[, outputOptions], rollup])`
-
-#### `inputOptions`
-
-The 1st argument is the same object as [`inputOptions`](https://rollupjs.org/#inputoptions).<br>
-However, the `input` option is the file specified in `gulp.src()`, so it can not be specified as gulp-rollup-each option.
-
-If you want to enable the Rollup [`cache`](https://rollupjs.org/guide/en#cache), set `isCache` option to `true`.
-
-#### `outputOptions`
-
-The 2nd argument is the same object as [`outputOptions`](https://rollupjs.org/#outputoptions).<br>
-If you omit the 2nd argument, `output` in the 1st argument changes to `outputOptions`.
-
-You can also pass a function that returns rollup options object as an argument. The function will receive [vinyl](https://github.com/gulpjs/vinyl) file object.
-
 #### `rollup`
 
 You can specify the 3rd argument for replacing `rollup` object by your dependency. It is useful if you want to use a new version of rollup than gulp-rollup-each is using.
@@ -138,9 +168,7 @@ function scripts () {
       rollupEach(
         {},
         {
-          output: {
-            format: 'iife'
-          }
+          format: 'iife'
         },
 
         // Passing rollup object
