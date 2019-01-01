@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/ko-yelie/gulp-rollup-each#readme",
   "scripts": {
-    "lint": "eslint lib test",
-    "test": "npm run lint && jasmine JASMINE_CONFIG_PATH=test/jasmine.json"
+    "lint": "eslint lib",
+    "test": "npm run lint && jest"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -35,7 +35,7 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "jasmine": "^3.3.1"
+    "jest": "^23.6.0"
   },
   "dependencies": {
     "plugin-error": "^1.0.1",

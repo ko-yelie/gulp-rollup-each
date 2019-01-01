@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const plugin = require('../../lib')
-const { Readable, Transform } = require('stream')
+const { Readable } = require('stream')
 
 const fixtureBase = path.resolve(__dirname, '../fixtures')
 
@@ -21,35 +21,16 @@ function mockSrc (fileName) {
   })
 }
 
-function mockTransform (fn) {
-  return new Transform({
-    objectMode: true,
-    transform: fn
-  })
-}
-
 describe('gulp-rollup-each', () => {
-  afterEach(() => {
-    process.removeAllListeners('unhandledRejection')
-  })
-
-  it('should not catch the latter stream error', done => {
-    process.on('unhandledRejection', err => {
-      expect(err.message).toBe('test error')
-      done()
-    })
-
-    mockSrc('test.js')
+  it('should throw an error if it is the wrong option', done => {
+    mockSrc('hello.js')
       .pipe(plugin({
-        output: { format: 'es' }
+        output: { wrongFormat: 'es' }
       }))
       .on('error', err => {
-        // If it reaches here, it accidentally handles the latter stream error.
-        console.error(err)
+        expect(err.plugin).toBe('gulp-rollup-each')
+        done()
       })
-      .pipe(mockTransform(() => {
-        throw new Error('test error')
-      }))
   })
 
   it('can be injected rollup object', done => {
@@ -59,7 +40,7 @@ describe('gulp-rollup-each', () => {
       }
     }
 
-    mockSrc('test.js')
+    mockSrc('hello.js')
       .pipe(plugin({}, {}, mockRollup))
       .on('error', err => {
         expect(err.message).toBe('Injected')

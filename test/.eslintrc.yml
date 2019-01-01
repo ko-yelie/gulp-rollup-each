@@ -1,4 +1,2 @@
----
-  parser: babel-eslint
-  env:
-    jasmine: true
+env:
+  jest: true
