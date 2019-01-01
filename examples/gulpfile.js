@@ -14,7 +14,9 @@ function scripts () {
         {
           isCache: true,
           plugins: [
-            rollupBabel(),
+            rollupBabel({
+              presets: ['@babel/preset-env']
+            }),
             rollupResolve({
               jsnext: true,
               main: true
