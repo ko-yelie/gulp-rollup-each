@@ -1,6 +1,6 @@
 {
   "name": "gulp-rollup-each",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Gulp plugin for Rollup. Yet another gulp-rollup plugin that allows to input/output multiple files.",
   "main": "lib/index.js",
   "files": [
