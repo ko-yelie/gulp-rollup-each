@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "plugin-error": "^1.0.1",
-    "rollup": "^1.18.0",
+    "rollup": "^2.71.1",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
 }
