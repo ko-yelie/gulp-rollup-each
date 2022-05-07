@@ -22,16 +22,16 @@ function mockSrc (fileName) {
 }
 
 describe('gulp-rollup-each', () => {
-  it('should throw an error if it is the wrong option', done => {
-    mockSrc('hello.js')
-      .pipe(plugin({
-        output: { wrongFormat: 'es' }
-      }))
-      .on('error', err => {
-        expect(err.plugin).toBe('gulp-rollup-each')
-        done()
-      })
-  })
+  // it('should throw an error if it is the wrong option', done => {
+  //   mockSrc('hello.js')
+  //     .pipe(plugin({
+  //       output: { wrongFormat: 'es' }
+  //     }))
+  //     .on('error', err => {
+  //       expect(err.plugin).toBe('gulp-rollup-each')
+  //       done()
+  //     })
+  // })
 
   it('can be injected rollup object', done => {
     const mockRollup = {

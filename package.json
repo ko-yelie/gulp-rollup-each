@@ -24,7 +24,7 @@
   "homepage": "https://github.com/ko-yelie/gulp-rollup-each#readme",
   "scripts": {
     "lint": "eslint lib",
-    "test": "npm run lint && jest"
+    "test": "npm run lint && jest && npm run test --prefix examples"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
