@@ -1,8 +1,8 @@
 const gulp = require('gulp')
 const rollupEach = require('../lib')
-const rollupBabel = require('rollup-plugin-babel')
-const rollupResolve = require('rollup-plugin-node-resolve')
-const rollupCommon = require('rollup-plugin-commonjs')
+const { getBabelOutputPlugin } = require('@rollup/plugin-babel')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
+const commonjs = require('@rollup/plugin-commonjs')
 const sourcemaps = require('gulp-sourcemaps')
 
 function scripts () {
@@ -14,14 +14,15 @@ function scripts () {
         {
           isCache: true,
           plugins: [
-            rollupBabel({
-              presets: ['@babel/preset-env']
+            getBabelOutputPlugin({
+              presets: ['@babel/preset-env'],
+              allowAllFormats: true,
             }),
-            rollupResolve({
+            nodeResolve({
               jsnext: true,
               main: true
             }),
-            rollupCommon()
+            commonjs()
           ]
         },
         {
