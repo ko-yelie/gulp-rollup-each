@@ -41,7 +41,7 @@ with sourcemaps and Buble
 const gulp = require('gulp')
 const sourcemaps = require('gulp-sourcemaps')
 const rollupEach = require('gulp-rollup-each')
-const rollupBuble = require('rollup-plugin-buble')
+const buble = require('@rollup/plugin-buble')
 
 function scripts () {
   return gulp
@@ -56,7 +56,7 @@ function scripts () {
           // inputOptions
           external: ['jquery'],
           plugins: [
-            rollupBuble({
+            buble({
               target: {
                 ie: 11
               }
