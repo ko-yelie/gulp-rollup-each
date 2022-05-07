@@ -24,21 +24,21 @@
   "homepage": "https://github.com/ko-yelie/gulp-rollup-each#readme",
   "scripts": {
     "lint": "eslint lib",
-    "test": "npm run lint && jest"
+    "test": "npm run lint && jest && npm run test --prefix examples"
   },
   "devDependencies": {
-    "eslint": "^8.14.0",
+    "eslint": "^8.15.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-standard": "^5.0.0",
-    "jest": "^28.0.3"
+    "jest": "^28.1.0"
   },
   "dependencies": {
     "plugin-error": "^1.0.1",
-    "rollup": "^2.71.1",
+    "rollup": "^2.72.0",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
 }
